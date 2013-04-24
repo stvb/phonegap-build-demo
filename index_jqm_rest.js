@@ -39,7 +39,7 @@ mod.controller('jqmRESTctrl', function($scope, $http, openkeyval) {
             }
             $scope.yourCountry = data;
         });
-    };
+    }
 
 
     $scope.save = function() {
