@@ -59,7 +59,7 @@ mod.controller('jqmRESTctrl', function($scope, $http, openkeyval) {
 				angular.element("#gpsLocation").html(coord);
             },
             function() {
-                console.log("failed...");
+                angular.element("#gpsLocation").html("failed...");
             });
     }
 });
