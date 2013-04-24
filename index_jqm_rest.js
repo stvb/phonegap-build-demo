@@ -48,18 +48,19 @@ mod.controller('jqmRESTctrl', function($scope, $http, openkeyval) {
         openkeyval.write("simplejqmdemo",$scope.yourCountry);
     }
     
-    $scope.syncGPS=function() {
-    	angular.element("#gpsLocation").html("looking...");
-        navigator.geolocation.getCurrentPosition(
-            function(position) {
-                 var coord="Lat: "+position.coords.latitude+
-                                    " Lon: "+position.coords.longitude;
-				console.log("got geolocation: "+coord);
-				$scope.gpsLocation=coord;
-				angular.element("#gpsLocation").html(coord);
+    $scope.takePicture=function() {
+        var smallImage = document.getElementById('smallImage');
+    	angular.element("#title").html("looking...");
+        navigator.camera.getPicture(
+            function(pict) {
+                 smallImage.style.display = 'block';
+                 smallImage.src = "data:image/jpeg;base64," + pict;
+                angular.element("#title").html("");
             },
-            function() {
-                angular.element("#gpsLocation").html("failed...");
-            });
+            function(msg) {
+                angular.element("#title").html("failed..." + msg);
+            },
+            { quality: 50, destinationType: destinationType.DATA_URL }
+        );
     }
 });

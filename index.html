@@ -16,9 +16,9 @@
 		});
 		document.addEventListener("deviceready", function(){
 				console.log("deviceready");
-                $("#gpsLink").on('vclick', function() {
+                $("#proofLink").on('vclick', function() {
                     console.log('switching page');
-                   $.mobile.changePage('#gpspage');
+                   $.mobile.changePage('#proofpage');
                 });
                 $("#refreshLink").on('vclick', function() {
                     angular.element("#mainpage").scope().refresh();
@@ -26,8 +26,8 @@
                 $("#saveLink").on('vclick', function() {
                     angular.element("#mainpage").scope().save();
                 });
-				$("#syncGPS").on('vclick', function() {
-                    angular.element("#mainpage").scope().syncGPS();
+				$("#takePicture").on('vclick', function() {
+                    angular.element("#mainpage").scope().takePicture();
 				});
                 navigator.splashscreen.hide();
                 console.log('ready');
@@ -38,7 +38,7 @@
     <body ng-controller="jqmRESTctrl">
         <div id='mainpage' data-url='mainpage' data-role='page'>
             <div data-role="header" data-theme="b">
-                <a href="#" id="gpsLink" data-icon="star">GPS</a>
+                <a href="#" id="proofLink" data-icon="star">Proof</a>
                 <h1>Hello {{yourCountry}}</h1>
             </div>
             <div data-role="content">
@@ -65,15 +65,16 @@
             </div>
         </div>
         
-        <div id='gpspage' data-url='gpspage' data-role='page'>
+        <div id='proofpage' data-url='gpspage' data-role='page'>
             <div data-role="header"><h1>Current position</h1></div>
             <div data-role="content">
-                <p id="gpsLocation">{{gpsLocation}}</p>
+                <p id="title"></p>
+                <img style="display:none;width:60px;height:60px;" id="smallImage" src="" />
             </div>
             <div data-role="footer" data-position="fixed">
              <div data-role="navbar">
              <ul>
-                <li><a href="#" data-icon="refresh" data-theme="b" id="syncGPS" >Sync</a></li>
+                <li><a href="#" data-icon="refresh" data-theme="b" id="takePicture" >Camera</a></li>
                 <li><a href="#mainpage" data-icon="back" data-theme="b" data-rel="back" >Back</a></li>
             </ul>   
             </div>
