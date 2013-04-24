@@ -31,6 +31,7 @@ mod.factory('openkeyval', function($http) {
 mod.controller('jqmRESTctrl', function($scope, $http, openkeyval) {
     $scope.yourCountry="World";
     $http.defaults.useXDomain = true;
+    $scope.gpsLocation="<unknown>";
 
     $scope.refresh = function() {
         openkeyval.read("simplejqmdemo").then(function(data) {
@@ -45,5 +46,16 @@ mod.controller('jqmRESTctrl', function($scope, $http, openkeyval) {
     $scope.save = function() {
         console.log('save');
         openkeyval.write("simplejqmdemo",$scope.yourCountry);
+    }
+    
+    $scope.syncGPS=function() {
+        navigator.geolocation.getCurrentPosition(
+            function(position) {
+                 $scope.gpsLocation="Lat: "+position.coords.latitude+
+                                    " Lon: "+position.coords.longitude;
+            },
+            function() {
+                console.log("failed...");
+            });
     }
 });
