@@ -49,10 +49,14 @@ mod.controller('jqmRESTctrl', function($scope, $http, openkeyval) {
     }
     
     $scope.syncGPS=function() {
+    	console.log("getting geolocation");
         navigator.geolocation.getCurrentPosition(
             function(position) {
-                 $scope.gpsLocation="Lat: "+position.coords.latitude+
+                 var coord="Lat: "+position.coords.latitude+
                                     " Lon: "+position.coords.longitude;
+				console.log("got geolocation: "+coord);
+				$scope.gpsLocation=coord;
+				angular.element("#gpsLocation").html(coord);
             },
             function() {
                 console.log("failed...");
