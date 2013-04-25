@@ -12,14 +12,35 @@
         <script src="GAPlugin.js"></script>
         <script src="index_jqm_rest.js"></script>
         <script>
-            $(document).ready(function() {
+        function checkState() {
+            console.log('Device type: ' + device.model);
+                            
+            var networkState = navigator.connection.type;
+        
+            var states = {};
+            states[Connection.UNKNOWN]  = 'Unknown connection';
+            states[Connection.ETHERNET] = 'Ethernet connection';
+            states[Connection.WIFI]     = 'WiFi connection';
+            states[Connection.CELL_2G]  = 'Cell 2G connection';
+            states[Connection.CELL_3G]  = 'Cell 3G connection';
+            states[Connection.CELL_4G]  = 'Cell 4G connection';
+            states[Connection.CELL]     = 'Cell generic connection';
+            states[Connection.NONE]     = 'No network connection';
+        
+            console.log('Connection type: ' + states[networkState]);
+        }           
+        
+        $(document).ready(function() {
                 console.log("document ready");
             });
             document.addEventListener("deviceready", function() {
                 console.log("deviceready");
                 var gaPlugin;
                 gaPlugin = window.plugins.gaPlugin;
-                gaPlugin.init(function() {}, function() {}, "UA-40380666-1", 20);
+                gaPlugin.init(
+                    function() {console.log("ga loaded");}, 
+                    function() {console.log("ga failed");}, 
+                    "UA-40380666-1", 10);
 
                 $("#proofLink").on('vclick', function() {
                     console.log('switching page');
@@ -27,7 +48,10 @@
                 });
                 $("#refreshLink").on('vclick', function() {
                     angular.element("#mainpage").scope().refresh();
-                    gaPlugin.trackEvent(function(){}, function(){}, "API", "Click", "Refresh", 1);
+                    gaPlugin.trackEvent(
+                        function(){console.log("trackEvent");}, 
+                        function(){console.log("trackEvent failed");}, 
+                        "API", "Click", "Refresh", 1);
                 });
                 $("#saveLink").on('vclick', function() {
                     angular.element("#mainpage").scope().save();
