@@ -41,9 +41,18 @@
                     function() {console.log("ga loaded");}, 
                     function() {console.log("ga failed");}, 
                     "UA-40380666-1", 10);
+                gaPlugin.trackPage(
+                    function(){console.log("trackPage");}, 
+                    function(){console.log("trackPage failed");}, 
+                    "be.sirris.phonegap-demo.main");
+                console.log("analytics initialized");
 
                 $("#proofLink").on('vclick', function() {
                     console.log('switching page');
+                    gaPlugin.trackPage(
+                        function(){console.log("trackPage");}, 
+                        function(){console.log("trackPage failed");}, 
+                        "be.sirris.phonegap-demo.proof");
                     $.mobile.changePage('#proofpage');
                 });
                 $("#refreshLink").on('vclick', function() {
