@@ -42,21 +42,21 @@
                 gaPlugin = window.plugins.gaPlugin;
                 gaPlugin.init(
 
-                function() {
-                    console.log("ga loaded");
+                function(msg) {
+                    console.log("ga loaded "+msg);
                 },
 
-                function() {
-                    console.log("ga failed");
+                function(msg) {
+                    console.log("ga failed "+msg);
                 }, "UA-40380666-1", 10);
                 gaPlugin.trackPage(
 
-                    function() {
-                        console.log("trackPage");
+                    function(msg) {
+                        console.log("trackPage "+msg);
                     },
     
-                    function() {
-                        console.log("trackPage failed");
+                    function(msg {
+                        console.log("trackPage failed "+msg);
                     }, "be.sirris.phonegap-demo.main"
                 );
                 console.log("analytics initialized");
@@ -64,26 +64,25 @@
                 $("#proofLink").on('vclick', function() {
                     console.log('switching page');
                     gaPlugin.trackPage(
-
-                    function() {
-                        console.log("trackPage");
-                    },
-
-                    function() {
-                        console.log("trackPage failed");
-                    }, "be.sirris.phonegap-demo.proof");
+                        function(msg) {
+                            console.log("trackPage "+msg);
+                        },
+    
+                        function(msg) {
+                            console.log("trackPage failed "+msg);
+                        }, "be.sirris.phonegap-demo.proof");
                     $.mobile.changePage('#proofpage');
                 });
                 $("#refreshLink").on('vclick', function() {
                     angular.element("#mainpage").scope().refresh();
                     gaPlugin.trackEvent(
 
-                    function() {
-                        console.log("trackEvent");
+                    function(result) {
+                        console.log("trackEvent "+result);
                     },
 
-                    function() {
-                        console.log("trackEvent failed");
+                    function(error) {
+                        console.log("trackEvent failed "+error);
                     }, "API", "Click", "Refresh", 1);
                 });
                 $("#saveLink").on('vclick', function() {
