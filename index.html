@@ -51,13 +51,14 @@
                 }, "UA-40380666-1", 10);
                 gaPlugin.trackPage(
 
-                function() {
-                    console.log("trackPage");
-                },
-
-                function() {
-                    console.log("trackPage failed");
-                }, "be.sirris.phonegap-demo.main");
+                    function() {
+                        console.log("trackPage");
+                    },
+    
+                    function() {
+                        console.log("trackPage failed");
+                    }, "be.sirris.phonegap-demo.main"
+                );
                 console.log("analytics initialized");
 
                 $("#proofLink").on('vclick', function() {
@@ -88,7 +89,8 @@
                 $("#saveLink").on('vclick', function() {
                     angular.element("#mainpage").scope().save();
                 });
-
+                console.log("buttons initialized");
+                checkState();
                 navigator.splashscreen.hide();
 
                 console.log('ready');
