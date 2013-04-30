@@ -14,7 +14,6 @@
         <script>
             function checkState() {
                 console.log('Device type: ' + device.model);
-                $(proofDiv).html('Device type: ' + device.model);
                 var networkState = navigator.connection.type;
 
                 var states = {};
@@ -28,6 +27,10 @@
                 states[Connection.NONE] = 'No network connection';
 
                 console.log('Connection type: ' + states[networkState]);
+                $("#proofDiv").html(
+                    '<p>Device type: ' + device.model+'</p>'+
+                    '<p>Connection type: ' + states[networkState]+'</p>'
+                );
             }
 
             $(document).ready(function() {
@@ -128,7 +131,7 @@
         </div>
         <div id='proofpage' data-url='gpspage' data-role='page'>
             <div data-role="header">
-                <h1>Current position</h1>
+                <h1>Device information:</h1>
             </div>
             <div id="proofDiv" data-role="content">
                 
