@@ -48,19 +48,4 @@ mod.controller('jqmRESTctrl', function($scope, $http, openkeyval) {
         openkeyval.write("simplejqmdemo",$scope.yourCountry);
     }
     
-    $scope.takePicture=function() {
-        var smallImage = document.getElementById('smallImage');
-    	angular.element("#title").html("looking...");
-        navigator.camera.getPicture(
-            function(pict) {
-                 smallImage.style.display = 'block';
-                 smallImage.src = "data:image/jpeg;base64," + pict;
-                angular.element("#title").html("");
-            },
-            function(msg) {
-                angular.element("#title").html("failed..." + msg);
-            },
-            { quality: 50, destinationType: destinationType.DATA_URL }
-        );
-    }
 });
